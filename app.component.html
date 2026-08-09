@@ -1,0 +1,423 @@
+<!-- ============================================================
+     mCare Validation Agent - Main Assessment Form
+     Matches mCareNG design language (teal, white cards)
+     ============================================================ -->
+
+<!-- ── Top Navigation Bar ── -->
+<nav class="mcare-navbar">
+  <a class="navbar-brand">
+    <div class="brand-icon">
+      <i class="bi bi-heart-pulse-fill"></i>
+    </div>
+    mCareNG
+    <span style="font-size:12px; opacity:0.8; font-weight:400">
+      | Validation Agent POC
+    </span>
+  </a>
+  <div class="navbar-user">
+    <i class="bi bi-person-circle"></i>
+    MMC\ Bikkinas
+    <button style="background:rgba(255,255,255,0.2); border:none;
+                   color:white; padding:4px 12px; border-radius:4px;
+                   cursor:pointer; font-size:12px; margin-left:8px">
+      Logout
+    </button>
+  </div>
+</nav>
+
+<!-- ── Page Layout ── -->
+<div class="page-container">
+
+  <!-- ── Left Sidebar ── -->
+  <div class="sidebar">
+    <div class="sidebar-section">
+      <div class="section-title">Tasks</div>
+      <div class="sidebar-item">
+        <span>All</span>
+        <span class="badge">52</span>
+      </div>
+      <div class="sidebar-item">
+        <span>Complete Documentation</span>
+        <span class="badge">41</span>
+      </div>
+      <div class="sidebar-item active">
+        <span>Perform Assessment</span>
+        <span class="badge">1</span>
+      </div>
+      <div class="sidebar-item">
+        <span>Schedule Assessment</span>
+        <span class="badge">1</span>
+      </div>
+      <div class="sidebar-item">
+        <span>System Task</span>
+        <span class="badge">9</span>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="section-title">Cases</div>
+      <div class="sidebar-item">
+        <span>All</span>
+        <span class="badge">51</span>
+      </div>
+      <div class="sidebar-item active">
+        <span>Active</span>
+        <span class="badge">51</span>
+      </div>
+      <div class="sidebar-item">
+        <span>Open</span>
+        <span class="badge">0</span>
+      </div>
+      <div class="sidebar-item">
+        <span>Closed</span>
+        <span class="badge">0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Main Content ── -->
+  <div class="main-content">
+
+    <!-- Member Info Header -->
+    <div class="mcare-card" style="margin-bottom:16px">
+      <div class="card-header">
+        <i class="bi bi-person-fill"></i>
+        DAVID WARNER — WI RN 10 Day Assessment
+        <span *ngIf="isValidated"
+              class="status-badge auto-corrected"
+              style="margin-left:auto">
+          ✓ Validated
+        </span>
+      </div>
+      <div class="card-body">
+        <div class="member-info-grid">
+          <div class="info-item">
+            <label>Medicaid ID</label>
+            <span>{{ member.medicaidId }}</span>
+          </div>
+          <div class="info-item">
+            <label>DOB</label>
+            <span>{{ member.dob }}</span>
+          </div>
+          <div class="info-item">
+            <label>State</label>
+            <span>{{ member.state }}</span>
+          </div>
+          <div class="info-item">
+            <label>Gender</label>
+            <span>{{ member.gender }}</span>
+          </div>
+          <div class="info-item">
+            <label>Case ID</label>
+            <span>{{ member.caseId }}</span>
+          </div>
+          <div class="info-item">
+            <label>Assessment Date</label>
+            <span>{{ form.assessmentDate }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Assessment Form ── -->
+    <div class="mcare-form">
+
+      <!-- Section: Initial Review -->
+      <div class="form-section">
+        <div class="section-header">
+          <i class="bi bi-clipboard2-pulse"></i>
+          Initial Review
+        </div>
+        <div class="section-body">
+
+          <div class="form-group">
+            <label>
+              Are there any imminent dangers to self and/or others?
+              <span class="required">*</span>
+            </label>
+            <div class="btn-group-yesno">
+              <button [ngClass]="getButtonClass('Q8','Yes')"
+                      (click)="setAnswer('Q8','Yes')">Yes</button>
+              <button [ngClass]="getButtonClass('Q8','No')"
+                      (click)="setAnswer('Q8','No')">No</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>
+              Does the member require assistance with medication
+              administration?
+              <span class="required">*</span>
+            </label>
+            <div class="btn-group-yesno">
+              <button [ngClass]="getButtonClass('Q10','Yes')"
+                      (click)="setAnswer('Q10','Yes')">Yes</button>
+              <button [ngClass]="getButtonClass('Q10','No')"
+                      (click)="setAnswer('Q10','No')">No</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>
+              Is there a support system change/concern?
+              <span class="required">*</span>
+            </label>
+            <div class="btn-group-yesno">
+              <button [ngClass]="getButtonClass('Q12','Yes')"
+                      (click)="setAnswer('Q12','Yes')">Yes</button>
+              <button [ngClass]="getButtonClass('Q12','No')"
+                      (click)="setAnswer('Q12','No')">No</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>
+              Is member currently hospitalized?
+              <span class="required">*</span>
+            </label>
+            <div class="btn-group-yesno">
+              <button [ngClass]="getButtonClass('Q20','Yes')"
+                      (click)="setAnswer('Q20','Yes')">Yes</button>
+              <button [ngClass]="getButtonClass('Q20','No')"
+                      (click)="setAnswer('Q20','No')">No</button>
+            </div>
+          </div>
+
+          <!-- Conditional field: only shown when Q20=Yes -->
+          <div class="form-group" *ngIf="form.Q20 === 'Yes'">
+            <label>
+              What are the assessed needs for member to safely
+              discharge in a timely manner?
+              <span class="required">*</span>
+            </label>
+            <textarea class="form-control"
+                      [(ngModel)]="form.Q21"
+                      rows="3"
+                      placeholder="Describe discharge needs...">
+            </textarea>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Section: Medication Review -->
+      <div class="form-section">
+        <div class="section-header">
+          <i class="bi bi-capsule"></i>
+          Medication Review
+        </div>
+        <div class="section-body">
+
+          <div class="form-group">
+            <label>
+              I have reconciled the medication list
+              <span class="required">*</span>
+            </label>
+            <div class="btn-group-yesno">
+              <button [ngClass]="getButtonClass('Q23','Yes')"
+                      (click)="setAnswer('Q23','Yes')">Yes</button>
+              <button [ngClass]="getButtonClass('Q23','No')"
+                      (click)="setAnswer('Q23','No')">No</button>
+              <button [ngClass]="getButtonClass('Q23','N/A')"
+                      (click)="setAnswer('Q23','N/A')">N/A</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>
+              Can member set up own medications?
+              <span class="required">*</span>
+            </label>
+            <div class="btn-group-yesno">
+              <button [ngClass]="getButtonClass('Q24','Yes')"
+                      (click)="setAnswer('Q24','Yes')">Yes</button>
+              <button [ngClass]="getButtonClass('Q24','No')"
+                      (click)="setAnswer('Q24','No')">No</button>
+              <button [ngClass]="getButtonClass('Q24','N/A')"
+                      (click)="setAnswer('Q24','N/A')">N/A</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Medication Interventions: (Optional)</label>
+            <textarea class="form-control"
+                      [(ngModel)]="form.Q30"
+                      rows="2"
+                      placeholder="Any medication interventions...">
+            </textarea>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Section: Caregiver Assessment -->
+      <div class="form-section">
+        <div class="section-header">
+          <i class="bi bi-people-fill"></i>
+          Caregiver Assessment
+        </div>
+        <div class="section-body">
+
+          <div class="form-group">
+            <label>
+              Has the Caregiver Skills Verification process
+              been completed?
+            </label>
+            <div class="btn-group-yesno">
+              <button [ngClass]="getButtonClass('Q45','Yes')"
+                      (click)="setAnswer('Q45','Yes')">Yes</button>
+              <button [ngClass]="getButtonClass('Q45','No')"
+                      (click)="setAnswer('Q45','No')">No</button>
+            </div>
+          </div>
+
+          <div class="form-group" *ngIf="form.Q45 === 'Yes'">
+            <label>
+              Were concerns noted during the Caregiver Skills
+              Verification?
+            </label>
+            <div class="btn-group-yesno">
+              <button [ngClass]="getButtonClass('Q47','Yes')"
+                      (click)="setAnswer('Q47','Yes')">Yes</button>
+              <button [ngClass]="getButtonClass('Q47','No')"
+                      (click)="setAnswer('Q47','No')">No</button>
+            </div>
+          </div>
+
+          <div class="form-group"
+               *ngIf="form.Q45 === 'Yes' && form.Q47 === 'Yes'">
+            <label>Skills Verification Concerns</label>
+            <textarea class="form-control"
+                      [(ngModel)]="form.Q48"
+                      rows="3"
+                      placeholder="Describe concerns noted...">
+            </textarea>
+          </div>
+
+          <div class="form-group">
+            <label>
+              Has the Caregiver Strain Assessment been completed?
+            </label>
+            <div class="btn-group-yesno">
+              <button [ngClass]="getButtonClass('Q49','Yes')"
+                      (click)="setAnswer('Q49','Yes')">Yes</button>
+              <button [ngClass]="getButtonClass('Q49','No')"
+                      (click)="setAnswer('Q49','No')">No</button>
+            </div>
+          </div>
+
+          <div class="form-group" *ngIf="form.Q49 === 'Yes'">
+            <label>
+              Were concerns noted during the Caregiver Strain
+              Assessment?
+            </label>
+            <div class="btn-group-yesno">
+              <button [ngClass]="getButtonClass('Q51','Yes')"
+                      (click)="setAnswer('Q51','Yes')">Yes</button>
+              <button [ngClass]="getButtonClass('Q51','No')"
+                      (click)="setAnswer('Q51','No')">No</button>
+            </div>
+          </div>
+
+          <div class="form-group"
+               *ngIf="form.Q49 === 'Yes' && form.Q51 === 'Yes'">
+            <label>Strain Assessment Concerns</label>
+            <textarea class="form-control"
+                      [(ngModel)]="form.Q52"
+                      rows="3"
+                      placeholder="Describe strain concerns...">
+            </textarea>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Section: Additional Information -->
+      <div class="form-section">
+        <div class="section-header">
+          <i class="bi bi-chat-text-fill"></i>
+          Additional Information
+        </div>
+        <div class="section-body">
+          <div class="form-group">
+            <label>Additional Comments (Optional)</label>
+            <textarea class="form-control"
+                      [(ngModel)]="form.Q55"
+                      rows="3"
+                      placeholder="Any additional observations or concerns...">
+            </textarea>
+          </div>
+
+          <!-- Total Points Display -->
+          <div class="form-group">
+            <label>Total Points (Auto-calculated)</label>
+            <input type="text"
+                   class="form-control"
+                   [(ngModel)]="form.Q44"
+                   placeholder="e.g. 3"
+                   style="max-width:120px">
+            <small style="color:#6c757d; font-size:11px">
+              Note: Try entering '  3  ' with spaces to demo
+              auto-correction
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Action Buttons ── -->
+      <div style="display:flex; gap:12px; margin-top:20px;
+                  padding-bottom:40px">
+
+        <!-- Validate Button -->
+        <button class="btn-validate"
+                [disabled]="isValidating"
+                (click)="onValidate()">
+          <span *ngIf="!isValidating">
+            <i class="bi bi-shield-check"></i>
+            Validate Assessment
+          </span>
+          <span *ngIf="isValidating">
+            <i class="bi bi-hourglass-split"></i>
+            Validating...
+          </span>
+        </button>
+
+        <!-- Submit to CCA Button -->
+        <button class="btn-submit"
+                [disabled]="!isValidated"
+                (click)="onSubmitToCCA()">
+          <i class="bi bi-send-fill"></i>
+          Submit to CCA
+        </button>
+
+      </div>
+
+      <!-- Error Message -->
+      <div *ngIf="validationError"
+           style="background:#f8d7da; border:1px solid #f5c6cb;
+                  border-radius:6px; padding:12px; color:#721c24;
+                  font-size:13px; margin-top:12px">
+        <i class="bi bi-exclamation-triangle-fill"></i>
+        {{ validationError }}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ── Validation Modal ── -->
+<app-validation-modal
+  *ngIf="showModal && validationResponse"
+  [response]="validationResponse"
+  (closeModal)="onCloseModal()"
+  (applyCorrections)="onApplyCorrections()"
+  (submitAnyway)="onSubmitToCCA()">
+</app-validation-modal>
+
+<!-- ── Toast Notification ── -->
+<div class="toast-container" *ngIf="showToast">
+  <div class="mcare-toast">
+    <i class="bi bi-check-circle-fill"></i>
+    {{ toastMessage }}
+  </div>
+</div>
