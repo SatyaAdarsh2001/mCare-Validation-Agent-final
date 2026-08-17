@@ -186,8 +186,8 @@ class AIService:
             "Authorization" : f"Bearer {self.api_key}",
             "Content-Type"  : "application/json",
             # OpenRouter headers for tracking
-            "HTTP-Referer"  : "https://molina-mcare-validation.com",
-            "X-Title"       : "Molina.mCare.ValidationAgent"
+            "HTTP-Referer"  : "https://mcare-validation.com",
+            "X-Title"       : "mCare.ValidationAgent"
         }
 
         payload = {

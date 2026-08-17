@@ -1,5 +1,5 @@
 # ============================================================
-# Molina.mCare.ValidationAgent - Main Application Entry Point
+# mCare.ValidationAgent - Main Application Entry Point
 # ============================================================
 
 import os
@@ -112,7 +112,7 @@ def serve_root_static(filename):
 def health_check():
     return jsonify({
         "status": "healthy",
-        "service": "Molina.mCare.ValidationAgent",
+        "service": "mCare.ValidationAgent",
         "version": "1.0.0",
         "ai_provider": os.getenv('AI_MODEL', 'openai/gpt-4o'),
         "cca_configured": cca_transport.is_configured()
@@ -200,6 +200,6 @@ def get_prod_errors_sample():
 if __name__ == '__main__':
     port = int(os.getenv('FLASK_PORT', 5000))
     debug = os.getenv('FLASK_DEBUG', 'True').lower() == 'true'
-    logger.info(f"Starting Molina.mCare.ValidationAgent on port {port}")
+    logger.info(f"Starting mCare.ValidationAgent on port {port}")
     app.run(host='0.0.0.0', port=port, debug=debug)
 
