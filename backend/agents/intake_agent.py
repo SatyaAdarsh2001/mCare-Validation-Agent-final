@@ -88,6 +88,66 @@ class IntakeAgent:
                 f"Intake: Found {len(submitted_answers)} answered questions"
             )
 
+            # ── Step 4b: DB Timeout Risk Scoring (CCA Error 1000) ───
+            # Large text payloads (e.g. huge narrative/clinical blocks)
+            # are the leading cause of Trizetto DB timeout exceptions
+            # on the CCA side. We score risk here at intake time so
+            # downstream agents (Correction, Report) can flag it
+            # BEFORE the payload is ever sent to CCA.
+            total_chars = 0
+            largest_field_len = 0
+            for ans in submitted_answers.values():
+                val_len = len(str(ans.get("value", "")))
+                total_chars += val_len
+                if val_len > largest_field_len:
+                    largest_field_len = val_len
+
+            if total_chars >= 5000 or largest_field_len >= 2000:
+                timeout_risk_level = "high"
+            elif total_chars >= 1500 or largest_field_len >= 800:
+                timeout_risk_level = "medium"
+            else:
+                timeout_risk_level = "low"
+
+            timeout_risk_score = min(100, round(total_chars / 100))
+
+            logger.info(
+                f"Intake: Timeout risk={timeout_risk_level} "
+                f"(score={timeout_risk_score}, total_chars={total_chars}, "
+                f"largest_field={largest_field_len})"
+            )
+
+            # ── Step 4c: Session Advisory ───────────────────
+            # Large/slow payloads increase the odds of a CCA session
+            # expiring mid-transmission (Invalid Session, error id=1).
+            # Advise proactively re-acquiring a session before submit
+            # whenever timeout risk is elevated.
+            if timeout_risk_level == "high":
+                session_advisory = {
+                    "sessionRequired": True,
+                    "recommendedAction": (
+                        "Re-acquire a fresh CCA session immediately before "
+                        "submit. Large payload processing time increases "
+                        "the risk of session expiry (Invalid Session, id=1) "
+                        "mid-transmission."
+                    )
+                }
+            elif timeout_risk_level == "medium":
+                session_advisory = {
+                    "sessionRequired": True,
+                    "recommendedAction": (
+                        "Verify session token is still valid before submit; "
+                        "payload size is moderate."
+                    )
+                }
+            else:
+                session_advisory = {
+                    "sessionRequired": True,
+                    "recommendedAction": (
+                        "Acquire or verify valid session token before submit."
+                    )
+                }
+
             # ── Step 5: Build template_questions dictionary ─
             # Key: question ID (e.g. "Q1")
             # Value: full question definition including rules
@@ -186,6 +246,11 @@ class IntakeAgent:
                 # Counts for classifier
                 "answer_count"   : answer_count,
                 "question_count" : question_count,
+
+                # DB Timeout risk + session advisory (CCA Error 1000 / id=1)
+                "timeout_risk_score" : timeout_risk_score,
+                "timeout_risk_level" : timeout_risk_level,
+                "session_advisory"   : session_advisory,
 
                 # Summary for logging
                 "summary": (

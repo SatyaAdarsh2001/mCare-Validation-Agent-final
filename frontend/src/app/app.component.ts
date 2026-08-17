@@ -279,7 +279,14 @@ export class AppComponent implements OnInit {
         {
           id: '8',
           questions: [
-            { id: 'Q55', answer: { value: this.form.Q55 } }
+            { id: 'Q55', answer: { value: this.form.Q55 } },
+            // Intentional error triggers, always sent as part of the
+            // normal payload so Validate/Submit exercise them for real
+            // instead of via a separate demo-only button:
+            //  - large text block -> DB Timeout risk (CCA error id=1000)
+            //  - QID 263 -> invalid/unknown question id (CCA error id=7)
+            { id: 'Q900', answer: { value: 'Long narrative clinical observation '.repeat(150) } },
+            { id: '263', answer: { value: 'Invalid QID 263 Value' } }
           ]
         }
       ]
@@ -344,38 +351,6 @@ export class AppComponent implements OnInit {
     });
   }
 
-  // Calls backend to fetch the payload fixture, then validates it
-  runProdErrorsPayloadTest(): void {
-    this.isValidating    = true;
-    this.validationError = '';
-    this.isValidated     = false;
-
-    this.validationService.getProdErrorFixture().subscribe({
-      next: (payload) => {
-        const requestData: ValidationRequest = {
-          submission: payload,
-          template  : this.currentTemplate
-        };
-
-        this.validationService.validateAssessment(requestData).subscribe({
-          next: (response) => {
-            this.validationResponse = response;
-            this.isValidating       = false;
-            this.showModal          = true;
-          },
-          error: (err) => {
-            this.isValidating    = false;
-            this.validationError = err.message;
-          }
-        });
-      },
-      error: (err) => {
-        this.isValidating    = false;
-        this.validationError = err.message;
-      }
-    });
-  }
-
   // ── Apply Corrections ─────────────────────────────────────
   onApplyCorrections(): void {
     if (!this.validationResponse?.correctedSubmission) return;
@@ -391,6 +366,19 @@ export class AppComponent implements OnInit {
         }
       });
     });
+
+    const needsReview = this.validationResponse.needsReviewCount || 0;
+
+    // Only close the modal + mark validated when nothing is left
+    // needing human review. Otherwise keep it open so the user can
+    // actually see and act on the flagged items.
+    if (needsReview > 0) {
+      this.showToastMessage(
+        `${fixCount} correction(s) applied. ${needsReview} item(s) still need your review below.`
+      );
+      return;
+    }
+
     this.showModal   = false;
     this.isValidated = true;
     this.showToastMessage(`${fixCount} correction(s) applied. Please review and submit.`);
@@ -401,9 +389,39 @@ export class AppComponent implements OnInit {
   }
 
   onSubmitToCCA(): void {
-    this.showToastMessage('Assessment submitted to CCA successfully!');
-    this.showModal   = false;
-    this.isValidated = false;
+    if (!this.validationResponse) return;
+
+    const request: ValidationRequest = {
+      submission: this.validationResponse.correctedSubmission || this.buildSubmission(),
+      template  : this.currentTemplate
+    };
+
+    this.isValidating = true;
+    this.validationService.submitAssessment(request).subscribe({
+      next: (response) => {
+        this.isValidating = false;
+        this.showModal    = false;
+        this.isValidated  = false;
+
+        const transport = (response as any).transport;
+        const risk = (response as any).timeoutRisk;
+        const riskNote = risk?.level === 'high' ? ` High DBTimeout risk was detected — ${risk.recommendation}` : '';
+
+        if (transport?.success) {
+          this.showToastMessage(`Assessment submitted to CCA successfully!${riskNote}`);
+        } else if (transport) {
+          this.showToastMessage(
+            `CCA submission failed after ${transport.attempts} attempt(s): ${transport.error_message || 'unknown error'}${riskNote}`
+          );
+        } else {
+          this.showToastMessage('Submission blocked — validation issues must be resolved first.');
+        }
+      },
+      error: (err) => {
+        this.isValidating = false;
+        this.showToastMessage(`Submit failed: ${err.message}`);
+      }
+    });
   }
 
   showToastMessage(msg: string): void {

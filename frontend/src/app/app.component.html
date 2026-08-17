@@ -424,16 +424,6 @@
           Validating...
         </span>
       </button>
-      
-      <!-- Test 5 Production Errors Button -->
-      <button type="button" 
-              class="btn-validate"
-              style="background:#dc3545; border-color:#dc3545" 
-              [disabled]="isValidating" 
-              (click)="runProdErrorsPayloadTest()">
-        <i class="bi bi-bug-fill"></i>
-        Test 5 Prod Errors
-      </button>
 
       <button class="btn-submit" [disabled]="!isValidated" (click)="onSubmitToCCA()">
         <i class="bi bi-send-fill"></i>

@@ -27,9 +27,9 @@ class ReportAgent:
         try:
             logger.info("Report Agent: Building final response...")
 
-            total_issues       = len(issues)
-            auto_fixed_count   = sum(1 for i in issues if i.get("autoFixed") is True)
-            needs_review_count = sum(1 for i in issues if i.get("autoFixed") is False)
+            total_issues       = sum(1 for i in issues if not i.get("pruned"))
+            auto_fixed_count   = sum(1 for i in issues if i.get("autoFixed") is True and not i.get("pruned"))
+            needs_review_count = sum(1 for i in issues if i.get("autoFixed") is False and not i.get("pruned"))
 
             status  = self._determine_status(total_issues, auto_fixed_count, needs_review_count)
             summary = self._write_summary(status, total_issues, auto_fixed_count, needs_review_count)
@@ -236,5 +236,6 @@ class ReportAgent:
             "originalValue" : i.get("originalValue", ""),
             "correctedValue": i.get("correctedValue"),
             "autoFixed"     : i.get("autoFixed", False),
-            "suggestion"    : i.get("suggestion")
+            "suggestion"    : i.get("suggestion"),
+            "pruned"        : i.get("pruned", False)
         } for i in issues]

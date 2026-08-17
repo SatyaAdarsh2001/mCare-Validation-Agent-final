@@ -33,13 +33,13 @@ export class ValidationModalComponent {
 
   get autoFixedIssues(): ValidationIssue[] {
     return this.response?.issues?.filter(
-      i => i.autoFixed === true
+      i => i.autoFixed === true && !(i as any).pruned
     ) || [];
   }
 
   get needsReviewIssues(): ValidationIssue[] {
     return this.response?.issues?.filter(
-      i => i.autoFixed === false
+      i => i.autoFixed === false && !(i as any).pruned
     ) || [];
   }
 

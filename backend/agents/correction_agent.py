@@ -53,9 +53,14 @@ class CorrectionAgent:
             error_type = issue.get("errorType", "")
 
             # Auto-resolve issues for pruned invalid/duplicate questions (Errors 3 & 4)
+            # NOTE: autoFixed stays False here on purpose — nothing was
+            # "corrected", the field was removed. These are surfaced
+            # separately via prunedQuestions/Template Sanitize Notice,
+            # not counted in autoFixedCount.
             if q_id in pruned_ids:
                 issue = issue.copy()
-                issue["autoFixed"] = True
+                issue["autoFixed"] = False
+                issue["pruned"] = True
                 issue["correctedValue"] = None
                 issue["suggestion"] = (
                     f"Auto-pruned: question '{q_id}' not in template version {template_version}."
@@ -132,21 +137,10 @@ class CorrectionAgent:
 
             updated_issues.append(issue)
 
-        # ── Step 3: Append Timeout Risk Issue if High (CCA Error 1) ────
-        if intake_context.get("timeout_risk_level") == "high" and not intake_context.get("timeout_risk_issue_emitted"):
-            updated_issues.append({
-                "questionId": "SYSTEM",
-                "questionName": "DB Timeout Risk Advisory",
-                "errorType": "SystemIssue",
-                "severity": "Low",
-                "description": "Payload characteristics indicate high probability of Trizetto DB timeout.",
-                "originalValue": "",
-                "correctedValue": None,
-                "autoFixed": False,
-                "suggestion": "Submission flagged as high DBTimeout risk. Downstream loader should retry with 1s/2s/4s backoff.",
-                "questionType": "system"
-            })
-            intake_context["timeout_risk_issue_emitted"] = True
+        # NOTE: DB Timeout Risk is intentionally NOT injected as a fake
+        # "issue" here. It's a pre-submission predictive signal only —
+        # it belongs to the Submit flow (see app.py /api/submit and the
+        # frontend's post-submit toast), not the Validate results list.
 
         # ── Phase 2: Enhanced AI Features ──────────────────
 

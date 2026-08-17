@@ -114,7 +114,10 @@
       </div>
 
       <!-- ── Timeout Risk Advisory (CCA Error 1) ── -->
-      <div *ngIf="response.timeoutRisk?.level === 'high'"
+      <!-- Only shown for actual Submit results, not plain Validate,
+           since this is a predictive/pre-submission signal that's
+           only actionable once you're actually sending to CCA. -->
+      <div *ngIf="response.timeoutRisk?.level === 'high' && response.transport"
            style="background:#fff3cd; border:1px solid #ffeeba;
                   border-radius:8px; padding:12px 14px; margin-bottom:16px">
         <div style="font-weight:700; font-size:13px; color:#856404; display:flex; align-items:center; gap:6px">
