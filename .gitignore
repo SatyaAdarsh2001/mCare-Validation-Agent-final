@@ -1,4 +1,4 @@
-# Dependency & build folders
+# Frontend ignores
 frontend/node_modules/
 frontend/dist/
 frontend/.angular/
@@ -6,7 +6,7 @@ node_modules/
 dist/
 .angular/
 
-# Python artifacts & environment
+# Backend ignores
 backend/__pycache__/
 backend/venv/
 backend/.env
