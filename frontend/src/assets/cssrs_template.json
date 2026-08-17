@@ -1,0 +1,646 @@
+{
+  "id": 1301,
+  "templateTypeId": 611,
+  "name": "Columbia Suicide Severity Risk Screener (C-SSRS)",
+  "shortName": "Columbia Suicide Severity Risk Screener (C-SSRS)",
+  "pages": [
+    {
+      "id": "2",
+      "name": "C-SSRS Main Page",
+      "order": 0,
+      "sections": [
+        {
+          "id": "2",
+          "name": "C-SSRS Main Page",
+          "subsections": [
+            {
+              "id": "2",
+              "name": "C-SSRS Main Page",
+              "questions": [
+                {
+                  "id": "Q1",
+                  "name": "1. Have you ever wished you were dead or wished you could go to sleep and not wake up?",
+                  "type": "buttongroup",
+                  "enabled": true,
+                  "validationRules": {
+                    "required": false,
+                    "measurementDateRequired": false
+                  },
+                  "options": [
+                    {
+                      "text": "Yes",
+                      "value": "Yes",
+                      "id": 1
+                    },
+                    {
+                      "text": "No",
+                      "value": "No",
+                      "id": 2
+                    }
+                  ],
+                  "questionTypeId": 400004334,
+                  "hidden": false,
+                  "conceptId": "563924"
+                },
+                {
+                  "id": "Q2",
+                  "name": "2. Have you actually had any thoughts of ( killing  yourself, taking your life or suicide? (For User information Only:  For Best Practice, You must be direct and use one of the options provided when you ask the question.  This question assesses if the member has any Suicidal Ideation or thoughts). ",
+                  "type": "buttongroup",
+                  "enabled": true,
+                  "validationRules": {
+                    "required": false,
+                    "measurementDateRequired": false
+                  },
+                  "options": [
+                    {
+                      "text": "Yes",
+                      "value": "Yes",
+                      "id": 1
+                    },
+                    {
+                      "text": "No",
+                      "value": "No",
+                      "id": 2
+                    }
+                  ],
+                  "questionTypeId": 400004335,
+                  "hidden": false,
+                  "conceptId": "563925"
+                },
+                {
+                  "id": "Q3",
+                  "name": "3. Have you thought about how you do this? (For User information Only: This question assesses if suicidal ideation includes specific thoughts about a method.) ",
+                  "type": "buttongroup",
+                  "enabled": true,
+                  "validationRules": {
+                    "required": false,
+                    "measurementDateRequired": false
+                  },
+                  "options": [
+                    {
+                      "text": "Yes",
+                      "value": "Yes",
+                      "id": 1
+                    },
+                    {
+                      "text": "No",
+                      "value": "No",
+                      "id": 2
+                    }
+                  ],
+                  "questionTypeId": 400004336,
+                  "hidden": false,
+                  "conceptId": "563926"
+                },
+                {
+                  "id": "Q4",
+                  "name": "4. Have you had any intention of acting on these thoughts of killing yourself, as opposed to you have the thoughts but you definitely would not act on them? (For User Information Only: This question assesses if the member's ideation includes specific intent  (no plan) to suicide. )",
+                  "type": "buttongroup",
+                  "enabled": true,
+                  "validationRules": {
+                    "required": false,
+                    "measurementDateRequired": false
+                  },
+                  "options": [
+                    {
+                      "text": "Yes",
+                      "value": "Yes",
+                      "id": 1
+                    },
+                    {
+                      "text": "No",
+                      "value": "No",
+                      "id": 2
+                    }
+                  ],
+                  "questionTypeId": 400004337,
+                  "hidden": false,
+                  "conceptId": "563927"
+                },
+                {
+                  "id": "Q5",
+                  "name": "5. Have you started to work out or worked out the details of how you will suicide?  Did you intend to carry out this plan? (For User Information Only: This question assesses if the member's suicidal ideation, intent and specific suicide planning.)",
+                  "type": "buttongroup",
+                  "enabled": true,
+                  "validationRules": {
+                    "required": false,
+                    "measurementDateRequired": false
+                  },
+                  "options": [
+                    {
+                      "text": "Yes",
+                      "value": "Yes",
+                      "id": 1
+                    },
+                    {
+                      "text": "No",
+                      "value": "No",
+                      "id": 2
+                    }
+                  ],
+                  "questionTypeId": 400004338,
+                  "hidden": false,
+                  "conceptId": "563928"
+                },
+                {
+                  "id": "Q6",
+                  "name": "6. Have you ever done anything or  started to do anything or prepared to do anything to end your life? ",
+                  "type": "buttongroup",
+                  "enabled": true,
+                  "validationRules": {
+                    "required": false,
+                    "measurementDateRequired": false
+                  },
+                  "options": [
+                    {
+                      "text": "Yes",
+                      "value": "Yes",
+                      "id": 1
+                    },
+                    {
+                      "text": "No",
+                      "value": "No",
+                      "id": 2
+                    }
+                  ],
+                  "questionTypeId": 400004339,
+                  "hidden": false,
+                  "conceptId": "563929"
+                },
+                {
+                  "id": "T1",
+                  "name": "(For user information and reference only: Examples of doing anything to plan or prepare such as\n\n collected pills, obtained a gun, gave away valuables, wrote a will or suicide note, held a gun but changed your mind, cut yourself, tried to hang yourself ,etc.\n This question assesses if the member has a history of suicidal behavior, which puts them in higher risk for future attempts.)",
+                  "type": "textblock",
+                  "enabled": true,
+                  "hidden": false
+                },
+                {
+                  "id": "Q7",
+                  "name": "7. Was this in the past 3 months?  (For user information only:  This question assesses if the member's history of recent suicidal behavior has been in the past 90 days which escalates risk even higher. )",
+                  "type": "buttongroup",
+                  "enabled": true,
+                  "validationRules": {
+                    "required": false,
+                    "measurementDateRequired": false
+                  },
+                  "options": [
+                    {
+                      "text": "Yes",
+                      "value": "Yes",
+                      "id": 1
+                    },
+                    {
+                      "text": "No",
+                      "value": "No",
+                      "id": 2
+                    }
+                  ],
+                  "questionTypeId": 400004340,
+                  "hidden": false,
+                  "conceptId": "563930"
+                }
+              ],
+              "order": 0
+            }
+          ],
+          "order": 0
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Scoring Page",
+      "order": 0,
+      "sections": [
+        {
+          "id": "3",
+          "name": "Scoring Page",
+          "subsections": [
+            {
+              "id": "3",
+              "name": "Scoring Page",
+              "questions": [
+                {
+                  "id": "T2",
+                  "name": "HIGH RISK <br>Members with High Risk of Suicide have the possibility of the most extreme immediate needs.  They may be unable to maintain their own safety, or there may not be any supports available to them to assist them with maintaining safety or may have active behaviors placing them at risk of bodily injury to self or others.    Other Members' with High Risk scores still have high risk, but alternatives to EMS can be considered.   This Triage Guidance considers the BH Crisis Call Policy HCS-645 to provide you with steps necessary to handle a member in crisis, with High Risk Score from the C-SSRS Assessment.<br> <br>\n1. Member consent is not needed to contact emergency services or Mobile Crisis Response Teams  in the event of a crisis.<br><br>\n2.  If ever in question: Contact 988 or 911.<br><br>\n3. Members with High Risk of Suicide need to get assessed same day- in person by either a BH Provider, a Crisis Response Team, or EMS  to ensure their safety.<br> <br>\n4.  Always contact 911 in the event the caller communicates active suicide behaviors or imminent bodily harm of self or others is notable.<br><br> \n5. Other Emergent Characteristic (from HCS-645) indicate that it may be necessary to contact EMS or Mobile Crisis Response: <br>\n-A member or someone in the home has expressed thoughts of taking action that could lead to their death<br> <br>\n-A member or someone in the home has expressed threats of suicide<br> <br>\n-A member or someone in the home is hearing voices giving them direction to kill themselves self or kill others<br> <br>\n-A member or someone in the home has communicated that they have already  taken an action that could lead to harm or death of themselves or someone else. ( Ex. taken pills, used a weapon to injure themselves, attacked another person etc.)<br> <br>\n6. When any of the above Emergent Characteristics are present and if the member does not have a supportive person who is present with them, and ready to transport them directly to a BH Provider or the nearest Emergency Room for an evaluation- you will need to contact mobile crisis team or EMS to respond.   (Some States have Crisis Response Teams  which they want you to contact instead of EMS. Please check with your manager if you are not aware of the State's required process.)<br>  <br>\n7. If none of the emergent characteristics is present (see #5 above) ,  and the member is not currently \"in the act of suicide or harming self or others\"  (no imminent risk noted), but they score with an overall a HIGH RISK  on the Columbia, please take the following actions:<br>  <br>\n-  Set up same day appointment with their BH Provider or a BH Preferred Provider and discuss and arrange transport by either the member's  support person, or through transportation you arrange with the member, or if a member indicates they want to drive themselves:  please document  this in your notes.<br>  <br>\n- You will need to follow up with provider on the  same day of appointment, to ensure the member arrived and attended their appointment.<br>  <br>\n-If you are unsure of anything related to the level of response that this member may require, please conference in the Molina  BH Crisis Line  (Using the BH Crisis Line back line Number (for internal use only )  855-597-1427 or, you may also contact 988 with the member on the line.<br>  <br>\n8. If you contact Molina BH Crisis Line or 988, stay on the line with the member so that you can offer support, and document disposition of this call.<br>  <br>\n9. When Contacting EMS you will need to stay on the line with the member and solicit help from a coworker via TEAMs  in order to have them contact EMS. Never place a caller in BH Distress on hold, disconnect or cold transfer their call.<br>  <br>\n10. Stay on the line with the member until EMS arrives or the support person (who is with the member)  indicates they are leaving their location with the member in order to obtain an evaluation at an Emergency Room and obtain the name of the ED they are going.<br> <br>\n11. Follow up with EMS or the Support Person or ED  to find out and document the disposition of the member after their evaluation.<br> <br>\n12. Because member's with HIGH risk need to get immediate attention, you will focus on their need for care and therefore A safety plan will not be completed during this call.<br> <br>\n13. Document the call, and include the steps you took, and what happened to the member and where they were taken.<br>  <br>\n14. Task case management follow up with the member to yourself or their assigned CM. Upon follow up, create a safety plan.<br> <br>\n15. Let your supervisor know about  any crisis  call.",
+                  "type": "textblock",
+                  "enabled": true,
+                  "hidden": false
+                },
+                {
+                  "id": "T3",
+                  "name": "*Please add a  BH Crisis Safety Plan Assessment after this assessment*<br>MODERATE RISK<br>1. Members with Moderate risk of suicide\n may or may not have Emergent Characteristics\n requiring immediate in person BH support. This Triage Guidance considers the BH Crisis Call Policy HCS-645 to provide you with steps necessary to handle a member with Moderate Risk based upon the C-SSRS Assessment.<br> <br>\n 2. If the member with Moderate Risk also has 1 or more of the Emergent Characteristics this indicates that they need to be evaluated in person as soon as possible- just like a member with High risk, the emergent characteristics are guides that identify when immediate BH support is needed.\n\n\n If the member has moderate risks, but does not have any Emergent Characteristics, then skip to item 14<br> <br>Emergent Characteristics:<br>-A member or someone in the home has expressed thoughts of taking action that could lead to their death <br>-A member or someone in the home has expressed threats of suicide<br> -A member or someone in the home is hearing voices giving them direction to kill themselves self or kill\nothers<br> -A member or someone in the home has communicated that they have already\n taken an action that could lead to harm or death of themselves or someone else. ( Ex. taken pills, used a weapon to injure themselves, attacked another person etc.)<br> <br>3. Always contact 911 in the event the caller communicates active suicide behaviors or imminent bodily harm of self or others is notable.<br> <br>4. Member consent is not needed to contact emergency services or Mobile Crisis Response Teams\n in the event of a crisis.<br> <br>5. When any of the above Emergent Characteristics are present and if the member does not have a supportive person who is present with them, and ready to transport them directly to a BH Provider or the nearest Emergency Room for an evaluation- you will need to contact a\n mobile crisis team or EMS to respond.\n\n (Some States have Crisis Response Teams\n which they want you to contact instead of EMS. Please check with your manager if you are not aware of the State's required process.)<br>  <br>6. When Contacting EMS you will need to stay on the line with the member and solicit help from a coworker via TEAMs\n in order to have them contact EMS. Never place a caller in BH Distress on hold, disconnect or cold transfer their call.<br> <br>\n 7. Stay on the line with the member until EMS arrives or the support person (who is with the member)\n indicates they are leaving their location with the member in order to obtain an evaluation at an Emergency Room and obtain the name of the ED they are going.<br> <br>\n\n 8. Follow up with EMS or the Support Person or ED\n to find out and document the disposition of the member after their evaluation.<br> <br>9. Because member's with Moderate\n risk\n and an emergent characteristic need to get same day BH assistance ,\n for this case you will focus on their need for care and therefore, a safety plan will be completed at a later time.<br>  <br>10. Document the call, and include the steps you took, and what happened to the member and where they were taken.<br> <br>\n 11. Task case management follow up with the member to yourself or their assigned CM. Upon follow up, and during follow up, then create a safety plan.<br> <br>12. If the member is a minor, follow state requirements for notification of guardians, after the call.<br> <br>13.Let your supervisor know about\n any crisis\n call.<br> <br>14. If a member with Moderate Risk does not have any emergent characteristics follow these steps:<br> <br>\n 15. If you are not a clinical staff member, then obtain consent from the member to warm transfer their call to their assigned CM, a CM,\n a HCS Clinical Staff, Vendor Rep or NAL/BH Crisis Hotline.<br> <br>16. Once transferred, clinical staff will continue to attempt to isolate and meet the member's reason for calling.<br> <br>17. Provide the caller with the National Suicide Prevention Lifeline 24/7 number of 988 and Create a Safety Plan with any member with Moderate Risk, but no emergent characteristics.<br> <br>18. Directly address the member's suicide risk factors with them as you\n discuss the need for and assist to schedule a same day or\n next day appointment with their BH provider or with a preferred BH Provider.<br> <br>19. Assist with any other referrals or supports or transportation based on the member's needs and also their reason for calling.<br> <br>20. If the member is not already engaged in CM, discuss and encourage\n enrollment into CM with them.<br> <br>21. Document the call including the steps you took, and\n what happened as a result of your intervention.<br> <br>22.\n Task case management follow up with the member with yourself or the assigned CM within 24-48 hours.<br> <br>21. Let your supervisor know about any crisis\n call.",
+                  "type": "textblock",
+                  "enabled": true,
+                  "hidden": false
+                },
+                {
+                  "id": "T4",
+                  "name": "<br>LOW RISK<br> <br>\n1. When a member presents with Low Risk on the CSSRS a safety plan is not necessary.<br> <br>2.\n If you are not a clinical staff member, then obtain consent from the member to warm transfer their call to their assigned CM, \n or\n a CM,\n<br> <br>3. Once transferred, clinical staff will continue to attempt to isolate and meet the member's reason for calling.<br> <br>4. Provide the caller with the National Suicide Prevention Lifeline 24/7 number of 988 and Create a Safety Plan with any member with Moderate Risk, but no emergent characteristics.<br> <br>5. Discuss the Low Risk score and offer to support the member with arranging services, including services with a BH\n provider\n as indicated.\n Since the member has low risk, same day or next day is not necessary. .<br> <br>6. Assist with any other referrals or supports or transportation based on the member's needs and also their reason for calling.<br> <br>7. If the member is not already engaged in CM, discuss and encourage\n enrollment into CM with them.<br> <br>8. Document the call, including the steps you took, and what happened as a result of your intervention.<br> <br>\n 8.\n Task case management follow up with the member with yourself or the assigned CM within 24-48 hours to ensure their needs have been met and avoid another escalation.<br> <br>9. Let your supervisor know about\n any crisis\n call.",
+                  "type": "textblock",
+                  "enabled": true,
+                  "hidden": false
+                },
+                {
+                  "id": "T5",
+                  "name": "<br>NO RISK<br> <br>1. This member did not endorse any questions\n on the CSSRS, and scored\n with NO\n Risk.\n Document the score of the assessment into the member record<br> <br>.2. No Safety Plan is necessary when no risk is present.<br>  <br>3. Address the member's reason for calling, or the reason for the contact with the\n member.<br>  <br>4. Document the call, and include the steps you took, and what happened\n as a result of your intervention.",
+                  "type": "textblock",
+                  "enabled": true,
+                  "hidden": false
+                },
+                {
+                  "id": "Q8",
+                  "name": "Crisis Risk Outcome Summary User: Please check the box that reflects the member's overall risk score and matches the actions that you took in response to the crisis call",
+                  "type": "multiple",
+                  "enabled": true,
+                  "validationRules": {
+                    "required": false,
+                    "measurementDateRequired": false
+                  },
+                  "options": [
+                    {
+                      "text": "HIGH RISK: The member had emergent needs and 911/988/Crisis Response was contacted to ensure their safety. ",
+                      "value": "HIGH RISK: The member had emergent needs and 911/988/Crisis Response was contacted to ensure their safety. ",
+                      "id": 1
+                    },
+                    {
+                      "text": "HIGH RISK: There is no imminent risk and the member had a support person present, and willing to transport the member immediately and safely. The CM arranged immediate follow up with the member's BH provider, a facility or ED, or other appropriate local resource, to ensure their safety. ",
+                      "value": "HIGH RISK: There is no imminent risk and the member had a support person present, and willing to transport the member immediately and safely. The CM arranged immediate follow up with the member's BH provider, a facility or ED, or other appropriate local resource, to ensure their safety. ",
+                      "id": 2
+                    },
+                    {
+                      "text": "HIGH RISK: The member scored HIGH RISK, but there is no imminent risk, and the member does not endorse any Emergent characteristics.  The CM arranged immediate/same day follow up with a BH Provider. The member does not have a support person so transportation was arranged by the CM, or the member requested to transport themselves. CM follow up with provider to document member's attendance. ",
+                      "value": "HIGH RISK: The member scored HIGH RISK, but there is no imminent risk, and the member does not endorse any Emergent characteristics.  The CM arranged immediate/same day follow up with a BH Provider. The member does not have a support person so transportation was arranged by the CM, or the member requested to transport themselves. CM follow up with provider to document member's attendance. ",
+                      "id": 3
+                    },
+                    {
+                      "text": "MODERATE RISK: The member has moderate risk, but it was determined that they had emergent needs and 911/988/Crisis Response was contacted to ensure their safety. ",
+                      "value": "MODERATE RISK: The member has moderate risk, but it was determined that they had emergent needs and 911/988/Crisis Response was contacted to ensure their safety. ",
+                      "id": 4
+                    },
+                    {
+                      "text": "MODERATE RISK: The member had a support person present, and willing to transport the member immediately and safely. The CM arranged immediate follow up with the member's BH provider, a facility or ED, or other appropriate local resource.",
+                      "value": "MODERATE RISK: The member had a support person present, and willing to transport the member immediately and safely. The CM arranged immediate follow up with the member's BH provider, a facility or ED, or other appropriate local resource.",
+                      "id": 5
+                    },
+                    {
+                      "text": "MODERATE RISK: CM addressed the member's reason for calling and assisted them with scheduling a same day BH follow up appointment , if needed transportation, and created/reviewed a BH Crisis Safety Plan",
+                      "value": "MODERATE RISK: CM addressed the member's reason for calling and assisted them with scheduling a same day BH follow up appointment , if needed transportation, and created/reviewed a BH Crisis Safety Plan",
+                      "id": 6
+                    },
+                    {
+                      "text": "LOW RISK: The CM addressed the member's reason for calling and recommended and provided referral for BH provider follow up.",
+                      "value": "LOW RISK: The CM addressed the member's reason for calling and recommended and provided referral for BH provider follow up.",
+                      "id": 7
+                    },
+                    {
+                      "text": "NO RISK: The member has no risk. Addressed the member's reason for calling, and made any appropriate referrals as indicated. ",
+                      "value": "NO RISK: The member has no risk. Addressed the member's reason for calling, and made any appropriate referrals as indicated. ",
+                      "id": 8
+                    },
+                    {
+                      "text": "Additional Actions Taken: CM conferenced in 988 or the Molina BH Crisis Line to the call with the member.",
+                      "value": "Additional Actions Taken: CM conferenced in 988 or the Molina BH Crisis Line to the call with the member.",
+                      "id": 9
+                    },
+                    {
+                      "text": "Additional Actions Taken: Follow up was tasked to Case Management ",
+                      "value": "Additional Actions Taken: Follow up was tasked to Case Management ",
+                      "id": 10
+                    },
+                    {
+                      "text": "Additional Actions Taken: The member refused assistance. (Do not select this option if member's have Emergent Needs.) ",
+                      "value": "Additional Actions Taken: The member refused assistance. (Do not select this option if member's have Emergent Needs.) ",
+                      "id": 11
+                    }
+                  ],
+                  "questionTypeId": 400004341,
+                  "hidden": false,
+                  "conceptId": "564412"
+                },
+                {
+                  "id": "Q9",
+                  "name": "Please take assessment below",
+                  "type": "hidden",
+                  "enabled": true,
+                  "validationRules": {
+                    "required": false,
+                    "measurementDateRequired": false
+                  },
+                  "options": [
+                    {
+                      "text": "BH Crisis Safety Plan",
+                      "value": "BH Crisis Safety Plan",
+                      "id": 1288
+                    }
+                  ],
+                  "questionTypeId": 400004342,
+                  "hidden": false,
+                  "conceptId": "0"
+                }
+              ],
+              "order": 0
+            }
+          ],
+          "order": 0
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "R01",
+      "questions": [
+        "Q2"
+      ],
+      "actionSets": [
+        {
+          "pass": [
+            {
+              "property": "enabled",
+              "questions": [
+                "Q3",
+                "Q4",
+                "Q5"
+              ],
+              "value": true
+            }
+          ],
+          "fail": [
+            {
+              "property": "enabled",
+              "questions": [
+                "Q3",
+                "Q4",
+                "Q5"
+              ],
+              "value": false
+            },
+            {
+              "property": "value",
+              "questions": [
+                "Q3",
+                "Q4",
+                "Q5"
+              ],
+              "value": ""
+            }
+          ],
+          "always": []
+        }
+      ],
+      "type": "complex",
+      "statement": "Q2$selectedOptionIds == 1"
+    },
+    {
+      "id": "R21",
+      "questions": [
+        "Q6"
+      ],
+      "actionSets": [
+        {
+          "pass": [
+            {
+              "property": "enabled",
+              "questions": [
+                "Q7"
+              ],
+              "value": true
+            }
+          ],
+          "fail": [
+            {
+              "property": "enabled",
+              "questions": [
+                "Q7"
+              ],
+              "value": false
+            },
+            {
+              "property": "value",
+              "questions": [
+                "Q7"
+              ],
+              "value": ""
+            }
+          ],
+          "always": []
+        }
+      ],
+      "type": "complex",
+      "statement": "Q6$selectedOptionIds == 1"
+    },
+    {
+      "id": "R100",
+      "questions": [
+        "Q1",
+        "Q2",
+        "Q6"
+      ],
+      "actionSets": [
+        {
+          "pass": [
+            {
+              "property": "enabled",
+              "questions": [
+                "T5"
+              ],
+              "value": true
+            }
+          ],
+          "fail": [
+            {
+              "property": "enabled",
+              "questions": [
+                "T5"
+              ],
+              "value": false
+            },
+            {
+              "property": "value",
+              "questions": [
+                "T5"
+              ],
+              "value": ""
+            }
+          ],
+          "always": []
+        }
+      ],
+      "type": "complex",
+      "statement": "(Q1$selectedOptionIds == 2 && Q2$selectedOptionIds == 2 && Q6$selectedOptionIds == 2)"
+    },
+    {
+      "id": "R101",
+      "questions": [
+        "Q1",
+        "Q2",
+        "Q6"
+      ],
+      "actionSets": [
+        {
+          "pass": [
+            {
+              "property": "enabled",
+              "questions": [
+                "T4"
+              ],
+              "value": true
+            }
+          ],
+          "fail": [
+            {
+              "property": "enabled",
+              "questions": [
+                "T4"
+              ],
+              "value": false
+            },
+            {
+              "property": "value",
+              "questions": [
+                "T4"
+              ],
+              "value": ""
+            }
+          ],
+          "always": []
+        }
+      ],
+      "type": "complex",
+      "statement": "(Q1$selectedOptionIds == 1 && Q2$selectedOptionIds == 2 && Q6$selectedOptionIds == 2)"
+    },
+    {
+      "id": "R102",
+      "questions": [
+        "Q1",
+        "Q2",
+        "Q6",
+        "Q3",
+        "Q4",
+        "Q7",
+        "Q5"
+      ],
+      "actionSets": [
+        {
+          "pass": [
+            {
+              "property": "enabled",
+              "questions": [
+                "T3"
+              ],
+              "value": true
+            }
+          ],
+          "fail": [
+            {
+              "property": "enabled",
+              "questions": [
+                "T3"
+              ],
+              "value": false
+            },
+            {
+              "property": "value",
+              "questions": [
+                "T3"
+              ],
+              "value": ""
+            }
+          ],
+          "always": []
+        }
+      ],
+      "type": "complex",
+      "statement": "(Q7$selectedOptionIds == 2 || Q4$selectedOptionIds == 2) && (Q3$selectedOptionIds == 1 || Q6$selectedOptionIds == 1) && (Q7$selectedOptionIds != 1 || Q5$selectedOptionIds != 1 || Q4$selectedOptionIds != 1)"
+    },
+    {
+      "id": "R103",
+      "questions": [
+        "Q1",
+        "Q2",
+        "Q3",
+        "Q4",
+        "Q5",
+        "Q6",
+        "Q7"
+      ],
+      "actionSets": [
+        {
+          "pass": [
+            {
+              "property": "enabled",
+              "questions": [
+                "T2"
+              ],
+              "value": true
+            }
+          ],
+          "fail": [
+            {
+              "property": "enabled",
+              "questions": [
+                "T2"
+              ],
+              "value": false
+            },
+            {
+              "property": "value",
+              "questions": [
+                "T2"
+              ],
+              "value": ""
+            }
+          ],
+          "always": []
+        }
+      ],
+      "type": "complex",
+      "statement": "(Q1$selectedOptionIds == 1 && Q2$selectedOptionIds == 1 && Q3$selectedOptionIds == 1 && Q4$selectedOptionIds == 1&& Q5$selectedOptionIds == 1 && Q6$selectedOptionIds == 1 && Q7$selectedOptionIds == 1)"
+    },
+    {
+      "id": "R1103",
+      "questions": [
+        "Q1",
+        "Q2",
+        "Q3",
+        "Q4",
+        "Q5",
+        "Q6",
+        "Q7"
+      ],
+      "actionSets": [
+        {
+          "pass": [
+            {
+              "property": "enabled",
+              "questions": [
+                "T2"
+              ],
+              "value": true
+            }
+          ],
+          "fail": [
+            {
+              "property": "enabled",
+              "questions": [
+                "T2"
+              ],
+              "value": false
+            },
+            {
+              "property": "value",
+              "questions": [
+                "T2"
+              ],
+              "value": ""
+            }
+          ],
+          "always": []
+        }
+      ],
+      "type": "complex",
+      "statement": "(Q1$selectedOptionIds == 1 && Q2$selectedOptionIds == 1 && Q3$selectedOptionIds == 1 && Q4$selectedOptionIds == 1&& Q5$selectedOptionIds == 1 && Q6$selectedOptionIds == 1 && Q7$selectedOptionIds == 2)"
+    }
+  ]
+}

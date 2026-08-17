@@ -1,0 +1,21 @@
+# Dependency & build folders
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+node_modules/
+dist/
+.angular/
+
+# Python artifacts & environment
+backend/__pycache__/
+backend/venv/
+backend/.env
+__pycache__/
+*.py[cod]
+.env
+
+# Editor & OS settings
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

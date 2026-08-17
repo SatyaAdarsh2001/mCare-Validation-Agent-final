@@ -1,0 +1,260 @@
+<!-- ============================================================
+     Validation Modal - Results Display
+     Shows all validation findings to the Care Manager
+     ============================================================ -->
+
+<div class="validation-modal-overlay">
+  <div class="validation-modal">
+
+    <!-- ── Modal Header (color changes by status) ── -->
+    <div class="modal-header" [ngClass]="headerClass">
+      <div style="display:flex; align-items:center; gap:10px">
+        <i class="bi" [ngClass]="statusIcon" style="font-size:20px"></i>
+        <div>
+          <h5>{{ statusLabel }}</h5>
+          <div style="font-size:12px; opacity:0.9">
+            {{ response.templateName }}
+          </div>
+        </div>
+      </div>
+      <button class="btn-close-modal" (click)="onClose()">✕</button>
+    </div>
+
+    <!-- ── Quality Score Card ── -->
+    <div *ngIf="response.qualityScore && response.qualityScore.score > 0"
+         style="display:flex; gap:12px; margin:16px 16px 0; 
+                padding:14px; background:#f8f9fa; 
+                border-radius:8px; border:1px solid #dee2e6">
+      <div style="text-align:center; min-width:70px">
+        <div [style.color]="getScoreColor(response.qualityScore.score)"
+             style="font-size:36px; font-weight:700; line-height:1">
+          {{response.qualityScore.score}}/10
+        </div>
+        <div style="font-size:11px; color:#6c757d">Quality Score</div>
+      </div>
+      <div style="flex:1; border-left:2px solid #dee2e6; padding-left:12px">
+        <div style="font-size:12px; font-weight:600; color:#2c3e50; margin-bottom:4px">
+          AI Assessment Feedback
+        </div>
+        <div style="font-size:12px; color:#444">
+          {{response.qualityScore.feedback}}
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Care Manager Coaching ── -->
+    <div *ngIf="response.coachingSummary"
+         style="background:#e8f4f8; border:1px solid #bee5eb;
+                border-radius:8px; padding:14px; margin:16px 16px 0">
+      <div style="font-size:12px; font-weight:700; color:#0c5460; margin-bottom:6px">
+        🩺 Clinical Coaching Summary (AI Generated)
+      </div>
+      <div style="font-size:12px; color:#0c5460">
+        {{response.coachingSummary}}
+      </div>
+    </div>
+
+    <!-- ── Modal Body ── -->
+    <div class="modal-body">
+
+      <!-- Summary Message -->
+      <div style="margin-bottom:16px; font-size:14px; color:#444">
+        {{ response.summary }}
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="stats-row">
+        <div class="stat-card total">
+          <div class="stat-number">{{ response.totalIssues }}</div>
+          <div class="stat-label">Total Issues</div>
+        </div>
+        <div class="stat-card fixed">
+          <div class="stat-number">{{ response.autoFixedCount }}</div>
+          <div class="stat-label">Auto-Fixed</div>
+        </div>
+        <div class="stat-card review">
+          <div class="stat-number">{{ response.needsReviewCount }}</div>
+          <div class="stat-label">Needs Review</div>
+        </div>
+      </div>
+
+      <!-- ── Transport Result Banner (When /api/submit is called) ── -->
+      <div *ngIf="response.transport"
+           [style.background]="response.transport.success ? '#d4edda' : '#f8d7da'"
+           [style.borderColor]="response.transport.success ? '#c3e6cb' : '#f5c6cb'"
+           style="border:1px solid; border-radius:8px; padding:12px 14px; margin-bottom:16px">
+        <div [style.color]="response.transport.success ? '#155724' : '#721c24'"
+             style="font-weight:700; font-size:13px; display:flex; align-items:center; gap:6px">
+          <i class="bi" [ngClass]="response.transport.success ? 'bi-check-circle-fill' : 'bi-x-circle-fill'"></i>
+          CCA Direct Submission: {{ response.transport.success ? 'Success' : 'Failed' }}
+          <span style="font-weight:normal; font-size:12px; margin-left:auto">
+            Attempts: {{ response.transport.attempts }}
+          </span>
+        </div>
+        <div *ngIf="response.transport.error_message" 
+             style="font-size:12px; color:#721c24; margin-top:4px; word-break:break-all">
+          {{ response.transport.error_message }}
+        </div>
+      </div>
+
+      <!-- ── Pruned Questions Banner (CCA Errors 3 & 4) ── -->
+      <div *ngIf="response.prunedQuestions && response.prunedQuestions.length > 0"
+           style="background:#e7f3fe; border:1px solid #b8daff;
+                  border-radius:8px; padding:12px 14px; margin-bottom:16px">
+        <div style="font-weight:700; font-size:13px; color:#004085; display:flex; align-items:center; gap:6px">
+          <i class="bi bi-scissors"></i>
+          Template Sanitize Notice
+        </div>
+        <div style="font-size:12px; color:#004085; margin-top:4px">
+          Auto-pruned <strong>{{ response.prunedQuestions.length }}</strong> question ID(s) not found in the current template version:
+          <code style="background:#fff; padding:2px 6px; border-radius:4px; margin-left:4px; font-weight:600; color:#004085">
+            {{ response.prunedQuestions.join(', ') }}
+          </code>
+        </div>
+      </div>
+
+      <!-- ── Timeout Risk Advisory (CCA Error 1) ── -->
+      <div *ngIf="response.timeoutRisk?.level === 'high'"
+           style="background:#fff3cd; border:1px solid #ffeeba;
+                  border-radius:8px; padding:12px 14px; margin-bottom:16px">
+        <div style="font-weight:700; font-size:13px; color:#856404; display:flex; align-items:center; gap:6px">
+          <i class="bi bi-clock-history"></i>
+          High DBTimeout Risk Warning
+        </div>
+        <div style="font-size:12px; color:#856404; margin-top:4px">
+          {{ response.timeoutRisk?.recommendation }}
+        </div>
+      </div>
+
+      <!-- ── Escalation Warning ── -->
+      <div *ngIf="response.status === 'escalated'"
+           style="background:#f8d7da; border:1px solid #f5c6cb;
+                  border-radius:8px; padding:14px; margin-bottom:16px">
+        <div style="font-weight:700; color:#721c24; margin-bottom:6px">
+          <i class="bi bi-exclamation-triangle-fill"></i>
+          Escalated — Do NOT Resubmit
+        </div>
+        <div style="font-size:13px; color:#721c24">
+          {{ response.escalation?.details }}
+        </div>
+        <div style="font-size:12px; color:#721c24; margin-top:6px">
+          <strong>Routed to:</strong>
+          {{ response.escalation?.routedTo }}
+        </div>
+      </div>
+
+      <!-- ── Valid Message ── -->
+      <div *ngIf="response.status === 'valid'"
+           style="background:#d4edda; border:1px solid #c3e6cb;
+                  border-radius:8px; padding:14px; text-align:center">
+        <i class="bi bi-check-circle-fill"
+           style="font-size:32px; color:#28a745"></i>
+        <div style="font-weight:600; color:#155724; margin-top:8px">
+          Assessment is ready to submit to CCA
+        </div>
+      </div>
+
+      <!-- ── Auto-Corrected Issues ── -->
+      <div *ngIf="autoFixedIssues.length > 0">
+        <div style="font-weight:700; font-size:13px;
+                    color:#155724; margin-bottom:10px">
+          <i class="bi bi-magic"></i>
+          Auto-Corrected ({{ autoFixedIssues.length }})
+        </div>
+
+        <div *ngFor="let issue of autoFixedIssues"
+             class="issue-card auto-fixed">
+          <div class="issue-header">
+            <span class="issue-qid">{{ issue.questionId }}</span>
+            <span class="issue-name">{{ issue.questionName }}</span>
+            <span class="severity-badge" [ngClass]="issue.severity">
+              {{ issue.severity }}
+            </span>
+          </div>
+          <div class="issue-description">{{ issue.description }}</div>
+          <div class="correction-row" *ngIf="issue.correctedValue !== null && issue.correctedValue !== undefined">
+            <span class="original-value">{{ issue.originalValue || '(empty)' }}</span>
+            <span class="arrow">→</span>
+            <span class="corrected-value">{{ issue.correctedValue }}</span>
+            <i class="bi bi-check-circle-fill"
+               style="color:#28a745; margin-left:4px"></i>
+          </div>
+          <div *ngIf="issue.suggestion && (issue.correctedValue === null || issue.correctedValue === undefined)" 
+               style="font-size:12px; color:#155724; margin-top:6px">
+            {{ issue.suggestion }}
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Needs Review Issues ── -->
+      <div *ngIf="needsReviewIssues.length > 0"
+           style="margin-top:16px">
+        <div style="font-weight:700; font-size:13px;
+                    color:#856404; margin-bottom:10px">
+          <i class="bi bi-exclamation-triangle-fill"></i>
+          Needs Your Attention ({{ needsReviewIssues.length }})
+        </div>
+
+        <div *ngFor="let issue of needsReviewIssues"
+             class="issue-card needs-review">
+          <div class="issue-header">
+            <span class="issue-qid">{{ issue.questionId }}</span>
+            <span class="issue-name">{{ issue.questionName }}</span>
+            <span class="severity-badge" [ngClass]="issue.severity">
+              {{ issue.severity }}
+            </span>
+          </div>
+          <div class="issue-description">{{ issue.description }}</div>
+
+          <!-- AI Suggestion Box -->
+          <div *ngIf="isAiSuggestion(issue)" class="ai-suggestion">
+            <div class="ai-label">
+              <i class="bi bi-lightbulb-fill"></i>
+              AI Suggestion (Review before using):
+            </div>
+            <div>{{ getAiSuggestion(issue) }}</div>
+          </div>
+
+          <!-- Regular Suggestion -->
+          <div *ngIf="issue.suggestion && !isAiSuggestion(issue)"
+               style="font-size:12px; color:#666; margin-top:6px">
+            {{ issue.suggestion }}
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end modal-body -->
+
+    <!-- ── Modal Footer ── -->
+    <div class="modal-footer">
+
+      <!-- Apply Corrections button -->
+      <button *ngIf="response.autoFixedCount > 0"
+              class="btn-validate"
+              (click)="onApplyCorrections()">
+        <i class="bi bi-magic"></i>
+        Apply {{ response.autoFixedCount }} Auto-Correction(s)
+      </button>
+
+      <!-- Submit to CCA Direct Endpoint -->
+      <button *ngIf="response.status === 'auto_corrected' || response.status === 'valid'"
+              style="background:#28a745; color:white; border:none;
+                     padding:10px 20px; border-radius:6px;
+                     cursor:pointer; font-weight:600"
+              (click)="onSubmitAnyway()">
+        <i class="bi bi-send-fill"></i>
+        Submit to CCA
+      </button>
+
+      <!-- Close button -->
+      <button style="background:#6c757d; color:white; border:none;
+                     padding:10px 20px; border-radius:6px;
+                     cursor:pointer; font-weight:600"
+              (click)="onClose()">
+        Close & Fix Manually
+      </button>
+
+    </div>
+
+  </div>
+</div>
