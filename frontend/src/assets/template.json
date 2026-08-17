@@ -878,7 +878,7 @@
 
                   "validationRules": {
 
-                    "required": false,
+                    "required": true,
 
                     "maxLength": 2980,
 

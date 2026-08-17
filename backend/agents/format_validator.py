@@ -208,14 +208,21 @@ class FormatValidatorAgent:
                     prop = action.get("property", "")
                     questions = action.get("questions", [])
                     value = action.get("value")
+                if prop == "enabled":
+                    if value is True:
+                        state["enabled"].extend(questions)
+                    elif value is False:
+                        state["disabled"].extend(questions)
 
-                    if prop == "enabled":
-                        if value is True:
-                            state["enabled"].extend(questions)
-                            state["required"].extend(questions)
-                        elif value is False:
-                            state["disabled"].extend(questions)
-
+                elif prop == "required":
+                    if value is True:
+                        state["required"].extend(questions)
+                    elif value is False:
+                        state["required"] = [
+                            q for q in state["required"]
+                            if q not in questions
+                        ]
+                
         return state
 
     def _evaluate_statement(self, statement: str, submitted_answers: dict) -> bool:

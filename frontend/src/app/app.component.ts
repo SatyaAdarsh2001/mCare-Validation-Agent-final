@@ -67,8 +67,9 @@ export class AppComponent implements OnInit {
     Q8: '', Q10: '', Q12: '', Q14: '',
     Q16: '', Q18: '', Q20: '', Q21: '',
     Q23: '', Q24: '', Q26: '', Q28: '', Q30: '',
-    Q31: '', Q33: '', Q37: '', Q39: '',
-    Q63: '', Q65: '', Q67: '',
+    Q31: '', Q32: '', Q33: '',
+    Q37: '', Q38: '', Q39: '',
+    Q63: '', Q64: '', Q65: '', Q66: '', Q67: '', Q68: '',
     Q44: '',
     Q45: '', Q47: '', Q48: '',
     Q49: '', Q51: '', Q52: '',
@@ -127,10 +128,20 @@ export class AppComponent implements OnInit {
     this.form.Q20 = 'Yes'; this.form.Q21 = '';
     this.form.Q23 = 'Yes'; this.form.Q24 = 'No';
     this.form.Q26 = 'N/A'; this.form.Q28 = 'Yes';
-    this.form.Q31 = 'Yes'; this.form.Q33 = 'No';
-    this.form.Q37 = 'Yes'; this.form.Q39 = 'No';
-    this.form.Q63 = 'Yes'; this.form.Q65 = 'Yes';
-    this.form.Q67 = 'No';  this.form.Q44 = '  3  ';
+    this.form.Q31 = 'Yes';
+    this.form.Q32 = '';
+    this.form.Q33 = 'No';
+
+    this.form.Q37 = 'Yes';
+    this.form.Q38 = '';
+    this.form.Q39 = 'No';
+
+    this.form.Q63 = 'Yes';
+    this.form.Q64 = '';
+    this.form.Q65 = 'Yes';
+    this.form.Q66 = '';
+    this.form.Q67 = 'No';
+    this.form.Q68 = ''; this.form.Q44 = '  3  ';
     this.form.Q45 = 'Yes'; this.form.Q47 = 'Yes';
     this.form.Q48 = '';    this.form.Q49 = 'Yes';
     this.form.Q51 = 'Yes'; this.form.Q52 = '';
@@ -241,17 +252,17 @@ export class AppComponent implements OnInit {
           id: '5',
           questions: [
             { id: 'Q31', answer: { value: this.form.Q31 } },
-            { id: 'Q32', answer: { value: '' } },
+            { id: 'Q32', answer: { value: this.form.Q32 } },
             { id: 'Q33', answer: { value: this.form.Q33 } },
             { id: 'Q37', answer: { value: this.form.Q37 } },
-            { id: 'Q38', answer: { value: '' } },
+            { id: 'Q38', answer: { value: this.form.Q38 } },
             { id: 'Q39', answer: { value: this.form.Q39 } },
             { id: 'Q63', answer: { value: this.form.Q63 } },
-            { id: 'Q64', answer: { value: '' } },
+            { id: 'Q64', answer: { value: this.form.Q64 } },
             { id: 'Q65', answer: { value: this.form.Q65 } },
-            { id: 'Q66', answer: { value: '' } },
+            { id: 'Q66', answer: { value: this.form.Q66 } },
             { id: 'Q67', answer: { value: this.form.Q67 } },
-            { id: 'Q68', answer: { value: '' } }
+            { id: 'Q68', answer: { value: this.form.Q68 } }
           ]
         },
         {
@@ -285,8 +296,8 @@ export class AppComponent implements OnInit {
             // instead of via a separate demo-only button:
             //  - large text block -> DB Timeout risk (CCA error id=1000)
             //  - QID 263 -> invalid/unknown question id (CCA error id=7)
-            { id: 'Q900', answer: { value: 'Long narrative clinical observation '.repeat(150) } },
-            { id: '263', answer: { value: 'Invalid QID 263 Value' } }
+            ////{ id: 'Q900', answer: { value: 'Long narrative clinical observation '.repeat(150) } },
+            //{ id: '263', answer: { value: 'Invalid QID 263 Value' } }
           ]
         }
       ]

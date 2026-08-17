@@ -193,8 +193,12 @@
           </div>
 
           <div class="form-group" *ngIf="form.Q20 === 'Yes'">
-            <label>What are the assessed needs for member to safely discharge?
-              <span class="required">*</span></label>
+            <label>
+           What are the assessed needs for member to safely discharge?
+           <span style="font-size:12px; color:#6c757d;">
+           (Optional)
+           </span>
+           </label>
             <textarea class="form-control" [(ngModel)]="form.Q21"
                       rows="3" placeholder="Describe discharge needs...">
             </textarea>
@@ -245,7 +249,227 @@
 
         </div>
       </div>
+      <div class="form-section">
+  <div class="section-header">
+    <i class="bi bi-clipboard-check"></i>
+    Assessment Details
+  </div>
 
+  <div class="section-body">
+
+    <!-- Q31 -->
+    <div class="form-group">
+      <label>
+        Was the assessment completed with the member?
+      </label>
+
+      <div class="btn-group-yesno">
+        <button
+          [ngClass]="getButtonClass('Q31','Yes')"
+          (click)="setAnswer('Q31','Yes')">
+          Yes
+        </button>
+
+        <button
+          [ngClass]="getButtonClass('Q31','No')"
+          (click)="setAnswer('Q31','No')">
+          No
+        </button>
+      </div>
+    </div>
+
+    <!-- Q32 -->
+    <div class="form-group" *ngIf="form.Q31 === 'Yes'">
+      <label>
+        Rationale
+        <span style="font-size:12px; color:#6c757d;">
+          (Optional)
+        </span>
+      </label>
+
+      <textarea
+        class="form-control"
+        [(ngModel)]="form.Q32"
+        rows="3"
+        placeholder="Enter rationale...">
+      </textarea>
+    </div>
+
+    <!-- Q37 -->
+    <div class="form-group">
+      <label>
+        Was the applicable assessment completed?
+      </label>
+
+      <div class="btn-group-yesno">
+        <button
+          [ngClass]="getButtonClass('Q37','Yes')"
+          (click)="setAnswer('Q37','Yes')">
+          Yes
+        </button>
+
+        <button
+          [ngClass]="getButtonClass('Q37','No')"
+          (click)="setAnswer('Q37','No')">
+          No
+        </button>
+      </div>
+    </div>
+
+    <!-- Q38 -->
+    <div class="form-group" *ngIf="form.Q37 === 'Yes'">
+      <label>
+        Rationale
+        <span style="font-size:12px; color:#6c757d;">
+          (Optional)
+        </span>
+      </label>
+
+      <textarea
+        class="form-control"
+        [(ngModel)]="form.Q38"
+        rows="3"
+        placeholder="Enter rationale...">
+      </textarea>
+    </div>
+
+    <!-- Q39 -->
+    <div class="form-group" *ngIf="form.Q37 === 'Yes'">
+      <label>
+        Was the assessment completed successfully?
+      </label>
+
+      <div class="btn-group-yesno">
+        <button
+          [ngClass]="getButtonClass('Q39','Yes')"
+          (click)="setAnswer('Q39','Yes')">
+          Yes
+        </button>
+
+        <button
+          [ngClass]="getButtonClass('Q39','No')"
+          (click)="setAnswer('Q39','No')">
+          No
+        </button>
+      </div>
+    </div>
+
+    <!-- Q63 -->
+    <div class="form-group">
+      <label>
+        Were additional concerns identified?
+      </label>
+
+      <div class="btn-group-yesno">
+        <button
+          [ngClass]="getButtonClass('Q63','Yes')"
+          (click)="setAnswer('Q63','Yes')">
+          Yes
+        </button>
+
+        <button
+          [ngClass]="getButtonClass('Q63','No')"
+          (click)="setAnswer('Q63','No')">
+          No
+        </button>
+      </div>
+    </div>
+
+    <!-- Q64 -->
+    <div class="form-group" *ngIf="form.Q63 === 'Yes'">
+      <label>
+        Rationale
+        <span style="font-size:12px; color:#6c757d;">
+          (Optional)
+        </span>
+      </label>
+
+      <textarea
+        class="form-control"
+        [(ngModel)]="form.Q64"
+        rows="3"
+        placeholder="Enter rationale...">
+      </textarea>
+    </div>
+
+    <!-- Q65 -->
+    <div class="form-group" *ngIf="form.Q63 === 'Yes'">
+      <label>
+        Was the identified concern addressed?
+      </label>
+
+      <div class="btn-group-yesno">
+        <button
+          [ngClass]="getButtonClass('Q65','Yes')"
+          (click)="setAnswer('Q65','Yes')">
+          Yes
+        </button>
+
+        <button
+          [ngClass]="getButtonClass('Q65','No')"
+          (click)="setAnswer('Q65','No')">
+          No
+        </button>
+      </div>
+    </div>
+
+    <!-- Q66 -->
+    <div class="form-group" *ngIf="form.Q63 === 'Yes'">
+      <label>
+        Rationale
+        <span style="font-size:12px; color:#6c757d;">
+          (Optional)
+        </span>
+      </label>
+
+      <textarea
+        class="form-control"
+        [(ngModel)]="form.Q66"
+        rows="3"
+        placeholder="Enter rationale...">
+      </textarea>
+    </div>
+
+    <!-- Q67 -->
+    <div class="form-group" *ngIf="form.Q63 === 'Yes'">
+      <label>
+        Is follow-up required?
+      </label>
+
+      <div class="btn-group-yesno">
+        <button
+          [ngClass]="getButtonClass('Q67','Yes')"
+          (click)="setAnswer('Q67','Yes')">
+          Yes
+        </button>
+
+        <button
+          [ngClass]="getButtonClass('Q67','No')"
+          (click)="setAnswer('Q67','No')">
+          No
+        </button>
+      </div>
+    </div>
+
+    <!-- Q68 -->
+    <div class="form-group" *ngIf="form.Q63 === 'Yes'">
+      <label>
+        Rationale
+        <span style="font-size:12px; color:#6c757d;">
+          (Optional)
+        </span>
+      </label>
+
+      <textarea
+        class="form-control"
+        [(ngModel)]="form.Q68"
+        rows="3"
+        placeholder="Enter rationale...">
+      </textarea>
+    </div>
+
+  </div>
+</div>
       <div class="form-section">
         <div class="section-header">
           <i class="bi bi-people-fill"></i>
